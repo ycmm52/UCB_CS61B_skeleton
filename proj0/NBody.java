@@ -3,11 +3,6 @@ public class NBody {
     private static int N;
     private static double radius;
     private static Planet[] planets;
-    private static double scale = 1e8;
-
-    public static double getScale() {
-        return scale;
-    }
 
     private static void readPlanetFile(String fileName) {
         In in = new In(fileName);
@@ -46,21 +41,16 @@ public class NBody {
         return NBody.planets;
     }
 
-    public static void drawBackGround() {
-        double radiusScaled = NBody.radius / NBody.scale;
+    private static void drawBackGround() {
+        double radiusScaled = NBody.radius;
         StdDraw.setScale(-1 * radiusScaled, radiusScaled);
         StdDraw.clear();
         StdDraw.picture(0, 0, "./images/starfield.jpg");
     }
 
-    public static void drawOnePlanet(double x, double y, String img) {
-        StdDraw.picture(x, y, img);
-    }
-
-    public static void drawPlanets() {
+    private static void drawPlanets() {
         for (Planet p : NBody.planets) {
-            String image = "images/" + p.getFileName();
-            drawOnePlanet(p.getXPos(), p.getYPos(), image);
+            p.draw();
         }
     }
 

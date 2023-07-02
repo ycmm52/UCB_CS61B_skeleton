@@ -14,7 +14,7 @@ public class Planet {
     public double yyVel;
     public double mass;
     public String imgFileName;
-    public static final double G = 6.67e-11;
+    private static final double G = 6.67e-11;
 
     public Planet(double xP, double yP, double xV, double yV, double m, String img) {
         this.xxPos = xP;
@@ -97,15 +97,38 @@ public class Planet {
         yyPos += yDelta;
     }
 
-    public double getXPos() {
-        return this.xxPos / NBody.getScale();
+    public void draw() {
+        String image = "images/" + imgFileName;
+        StdDraw.picture(xxPos, yyPos, image);
     }
 
-    public double getYPos() {
-        return this.yyPos / NBody.getScale();
+    private void print() {
+        StdOut.printf("%11.4e %11.4e %11.4e %11.4e %11.4e %12s\n",
+            this.xxPos, this.yyPos, this.xxVel,
+            this.yyVel, this.mass, this.imgFileName);
     }
 
-    public String getFileName() {
+    private double getXPos() {
+        return this.xxPos;
+    }
+
+    private double getYPos() {
+        return this.yyPos;
+    }
+
+    private double getXVel() {
+        return this.xxVel;
+    }
+
+    private double getYVel() {
+        return this.yyVel;
+    }
+
+    private double getMass() {
+        return this.mass;
+    }
+
+    private String getFileName() {
         return this.imgFileName;
     }
 }
