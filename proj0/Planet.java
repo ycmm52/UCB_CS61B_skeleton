@@ -107,28 +107,4 @@ public class Planet {
             this.xxPos, this.yyPos, this.xxVel,
             this.yyVel, this.mass, this.imgFileName);
     }
-
-    private double getXPos() {
-        return this.xxPos;
-    }
-
-    private double getYPos() {
-        return this.yyPos;
-    }
-
-    private double getXVel() {
-        return this.xxVel;
-    }
-
-    private double getYVel() {
-        return this.yyVel;
-    }
-
-    private double getMass() {
-        return this.mass;
-    }
-
-    private String getFileName() {
-        return this.imgFileName;
-    }
 }
