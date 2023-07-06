@@ -96,8 +96,7 @@ public class ArrayDeque<T> {
     public String printDeque() {
         String out = "";
         for (i = 0; i < this.size; i+= 1;) {
-            int trueIndex = getTrueIndex(this.start);
-            out += this.items[trueIndex].toString() + " ";
+            out += this.items.get(i).toString() + " ";
         }
         out = out.replaceAll("\\s+$", "");
         System.out.println(out);
