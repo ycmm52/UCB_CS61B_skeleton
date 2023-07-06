@@ -93,10 +93,21 @@ public class ArrayDeque<T> {
         return this.size;
     }
 
-    public void printDeque() {
+    public String printDeque() {
+        String out = "";
+        for (i = 0; i < this.size; i+= 1;) {
+            int trueIndex = getTrueIndex(this.start);
+            out += this.items[trueIndex].toString() + " ";
+        }
+        out = out.replaceAll("\\s+$", "");
+        System.out.println(out);
+        return out
     }
 
     public T removeFirst() {
+        if (this.size < 1) {
+            return null;
+        }
         int trueIndex = getTrueIndex(this.start);
         T first = this.items[trueIndex];
         this.items[trueIndex] = null;
@@ -106,6 +117,9 @@ public class ArrayDeque<T> {
     }
 
     public T removeLast() {
+        if (this.size < 1) {
+            return null;
+        }
         int trueIndex = getTrueIndex(this.stop);
         T last = this.items[trueIndex];
         this.items[trueIndex] = null;
