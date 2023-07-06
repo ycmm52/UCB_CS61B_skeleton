@@ -41,9 +41,10 @@ public class ArrayDeque<T> {
 
     private void reSize() {
         int newSize;
+        double ratio = (double) this.size / (double) this.items.length;
         if (this.size == this.items.length) {
             newSize = this.items.length * INC_FACTOR;
-        } else if (items.length > INI_SIZE && size / items.length <= USE_RATIO) {
+        } else if (items.length > INI_SIZE && ratio <= USE_RATIO) {
             int tempSize = (int) Math.ceil(this.items.length * REC_FACTOR);
             newSize = Math.max(tempSize, INI_SIZE);
         } else {

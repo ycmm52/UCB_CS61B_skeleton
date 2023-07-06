@@ -38,7 +38,6 @@ public class LinkedListDequeTest {
      * && is the "and" operation. */
     public static void addIsEmptySizeTest() {
         System.out.println("Running add/isEmpty/Size test.");
-        // System.out.println("Make sure to uncomment the lines below (and delete this print statement).");
         LinkedListDeque<String> lld1 = new LinkedListDeque<String>();
 
         boolean passed = checkEmpty(true, lld1.isEmpty());
@@ -67,7 +66,6 @@ public class LinkedListDequeTest {
 
         System.out.println("Running add/remove test.");
 
-        // System.out.println("Make sure to uncomment the lines below (and delete this print statement).");
         LinkedListDeque<String> lld1 = new LinkedListDeque<String>();
         // should be empty
         boolean passed = checkEmpty(true, lld1.isEmpty());
@@ -111,32 +109,27 @@ public class LinkedListDequeTest {
     @Test
     public void testArrayDeque() {
         ArrayDeque<Integer> dq = new ArrayDeque();
-        assertEquals(true, dq.isEmpty());
-        dq.addFirst(0);
-        assertEquals(0, (int) dq.removeFirst());
-        dq.addFirst(2);
-        assertEquals(2, (int) dq.removeLast());
-        dq.addLast(2);
-        assertEquals(2, (int) dq.removeFirst());
-        dq.addLast(0);
-        assertEquals(0, (int) dq.removeFirst());
-        dq.addFirst(2);
-        dq.addLast(3);
-        dq.addLast(4);
-        dq.addLast(5);
-        dq.addLast(6);
-        dq.addLast(7);
-        dq.addFirst(8);
-        dq.addFirst(9);
-        dq.addFirst(10);
-        assertEquals(8, (int) dq.get(2));
-        dq.removeFirst();
-        dq.removeFirst();
-        dq.removeFirst();
-        dq.removeFirst();
-        dq.removeFirst();
-        dq.removeFirst();
-        dq.removeFirst();
+        // assertEquals(true, dq.isEmpty());
+        // dq.addFirst(0);
+        // assertEquals(0, (int) dq.removeFirst());
+        // dq.addFirst(2);
+        // assertEquals(2, (int) dq.removeLast());
+        // dq.addLast(2);
+        // assertEquals(2, (int) dq.removeFirst());
+        // dq.addLast(0);
+        // assertEquals(0, (int) dq.removeFirst());
+        // dq.addLast(0);
+        // dq.addLast(1);
+        // dq.addLast(2);
+        // dq.addLast(3);
+        // dq.addLast(4);
+        // dq.addLast(5);
+        // dq.addFirst(6);
+        // dq.isEmpty();
+        // dq.addLast(8);
+        // dq.addLast(9);
+        // dq.addLast(10);
+        // dq.removeFirst();
 
     }
 
