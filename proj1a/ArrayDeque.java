@@ -43,7 +43,7 @@ public class ArrayDeque<T> {
         int newSize;
         if (this.size == this.items.length) {
             newSize = this.items.length * INC_FACTOR;
-        } else if (this.items.length > INC_FACTOR * INI_SIZE && this.size / this.items.length <= USE_RATIO) {
+        } else if (items.length > INI_SIZE && size / items.length <= USE_RATIO) {
             int tempSize = (int) Math.ceil(this.items.length * REC_FACTOR);
             newSize = Math.max(tempSize, INI_SIZE);
         } else {
@@ -71,6 +71,7 @@ public class ArrayDeque<T> {
         }
         this.items[index] = item;
         if (!isEmpty()) {
+            index = convertIndex(index);
             this.start = index;
         }
         this.size += 1;
@@ -93,7 +94,8 @@ public class ArrayDeque<T> {
             index = convertIndex(this.stop + 1);
         }
         this.items[index] = item;
-        if (isEmpty()) {
+        if (!isEmpty()) {
+            index = convertIndex(index);
             this.stop = index;
         }
         this.size += 1;
@@ -134,7 +136,8 @@ public class ArrayDeque<T> {
         this.items[trueIndex] = null;
         this.size -= 1;
         if (!isEmpty()) {
-            this.start += 1;
+            // this.start += 1;
+            this.start = convertIndex(this.start + 1);
         }
         this.reSize();
         return first;
@@ -149,7 +152,8 @@ public class ArrayDeque<T> {
         this.items[trueIndex] = null;
         this.size -= 1;
         if (!isEmpty()) {
-            this.stop -= 1;
+            // this.stop -= 1;
+            this.stop = convertIndex(this.stop - 1);
         }
         this.reSize();
         return last;
