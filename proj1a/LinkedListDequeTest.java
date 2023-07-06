@@ -39,11 +39,11 @@ public class LinkedListDequeTest {
     public static void addIsEmptySizeTest() {
         System.out.println("Running add/isEmpty/Size test.");
         System.out.println("Make sure to uncomment the lines below (and delete this print statement).");
-           LinkedListDeque<String> lld1 = new LinkedListDeque<String>();
+        LinkedListDeque<String> lld1 = new LinkedListDeque<String>();
 
-           boolean passed = checkEmpty(true, lld1.isEmpty());
+        boolean passed = checkEmpty(true, lld1.isEmpty());
 
-           lld1.addFirst("front");
+        lld1.addFirst("front");
 
         // The && operator is the same as "and" in Python.
         // It's a binary operator that returns true if both arguments true, and false otherwise.
@@ -68,11 +68,12 @@ public class LinkedListDequeTest {
         System.out.println("Running add/remove test.");
 
         System.out.println("Make sure to uncomment the lines below (and delete this print statement).");
-           LinkedListDeque<Integer> lld1 = new LinkedListDeque<Integer>();
+        LinkedListDeque<String> lld1 = new LinkedListDeque<String>();
         // should be empty
         boolean passed = checkEmpty(true, lld1.isEmpty());
 
-        lld1.addFirst(10);
+        String ss = "aa";
+        lld1.addFirst(ss);
         // should not be empty
         passed = checkEmpty(false, lld1.isEmpty()) && passed;
 
@@ -109,19 +110,16 @@ public class LinkedListDequeTest {
 
     @Test
     public void testArrayDeque() {
-        ArrayDeque<String> dq = new ArrayDeque();
+        ArrayDeque<Integer> dq = new ArrayDeque();
         assertEquals(true, dq.isEmpty());
-        String[] arr = {"11", "22", "33", "44", "55", "66", "77"};
-        dq.addLast("00");
-        assertEquals("00", dq.get(0));
-        dq.addLast(arr);
-        String[] arr2 = {"aa", "bb", "cc", "dd", "ee", "ff"};
-        dq.removeFirst();
-        assertEquals("11", dq.get(0));
-        dq.removeLast();
-        assertEquals("66", dq.get(dq.size()-1));
-        dq.addFirst(arr2);
-        assertEquals("aa", dq.get(0));
+        dq.addFirst(0);
+        assertEquals(0, (int) dq.removeFirst());
+        dq.addFirst(2);
+        assertEquals(2, (int) dq.removeLast());
+        dq.addLast(2);
+        assertEquals(2, (int) dq.removeFirst());
+        dq.addLast(0);
+        assertEquals(0, (int) dq.removeFirst());
 
     }
 

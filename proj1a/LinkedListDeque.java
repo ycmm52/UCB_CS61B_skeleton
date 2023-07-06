@@ -3,32 +3,32 @@ public class LinkedListDeque<T> {
     private Node sentinel;
     private int size;
 
-    public LinkedListDeque(T[] arr) {
-        this.sentinel = new Node(null);
-        this.size = 0;
-        Node currentNode;
-        Node prevNode = new Node(null);
-        for (T element : arr) {
-            if (this.sentinel.next == this.sentinel) {
-                currentNode = new Node(element, sentinel, null);
-                sentinel.next = currentNode;
-            } else {
-                currentNode = new Node(element, prevNode, null);
-                prevNode.next = currentNode;
-            }
-            this.sentinel.prev = currentNode;
-            prevNode = currentNode;
-            size += 1;
-        }
-    }
+    // private LinkedListDeque(T[] arr) {
+    //     this.sentinel = new Node(null);
+    //     this.size = 0;
+    //     Node currentNode;
+    //     Node prevNode = new Node(null);
+    //     for (T element : arr) {
+    //         if (this.sentinel.next == this.sentinel) {
+    //             currentNode = new Node(element, sentinel, null);
+    //             sentinel.next = currentNode;
+    //         } else {
+    //             currentNode = new Node(element, prevNode, null);
+    //             prevNode.next = currentNode;
+    //         }
+    //         this.sentinel.prev = currentNode;
+    //         prevNode = currentNode;
+    //         size += 1;
+    //     }
+    // }
 
-    public LinkedListDeque(T ele) {
-        this.size = 1;
-        this.sentinel = new Node(null);
-        Node node = new Node(ele, sentinel, sentinel);
-        this.sentinel.prev = node;
-        this.sentinel.next = node;
-    }
+    // private LinkedListDeque(T ele) {
+    //     this.size = 1;
+    //     this.sentinel = new Node(null);
+    //     Node node = new Node(ele, sentinel, sentinel);
+    //     this.sentinel.prev = node;
+    //     this.sentinel.next = node;
+    // }
 
     public LinkedListDeque() {
         this.size = 0;
@@ -124,7 +124,7 @@ public class LinkedListDeque<T> {
         return this.getRecursiveHelper(index, this.sentinel.next);
     }
 
-    public T getRecursiveHelper(int index, Node node) {
+    private T getRecursiveHelper(int index, Node node) {
         if (node == this.sentinel) {
             return null;
         }
@@ -134,19 +134,19 @@ public class LinkedListDeque<T> {
         return getRecursiveHelper(index - 1, node.next);
     }
 
-    public class Node {
-        public T item;
-        public Node next;
-        public Node prev;
+    private class Node {
+        private T item;
+        private Node next;
+        private Node prev;
 
-        public Node(T i) {
+        private Node(T i) {
             // For sentinel initialize
             this.item = i;
             this.next = this;
             this.prev = this;
         }
 
-        public Node(T i, Node p, Node n) {
+        private Node(T i, Node p, Node n) {
             this.item = i;
             this.prev = p;
             this.next = n;
