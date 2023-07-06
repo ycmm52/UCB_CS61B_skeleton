@@ -84,7 +84,7 @@ public class LinkedListDequeTest {
     }
 
     @Test
-    public void testDeque() {
+    public void testLinkedListDeque() {
         LinkedListDeque<String> dq = new LinkedListDeque();
         // assertEquals("", dq.printDeque());
         assertEquals(true, dq.isEmpty());
@@ -105,6 +105,24 @@ public class LinkedListDequeTest {
         assertEquals(null, dq.removeFirst());
         assertEquals(null, dq.removeLast());
         // assertEquals("aa bb", dq.printDeque());
+    }
+
+    @Test
+    public void testArrayDeque() {
+        ArrayDeque<String> dq = new ArrayDeque();
+        assertEquals(true, dq.isEmpty());
+        String[] arr = {"11", "22", "33", "44", "55", "66", "77"};
+        dq.addLast("00");
+        assertEquals("00", dq.get(0));
+        dq.addLast(arr);
+        String[] arr2 = {"aa", "bb", "cc", "dd", "ee", "ff"};
+        dq.removeFirst();
+        assertEquals("11", dq.get(0));
+        dq.removeLast();
+        assertEquals("66", dq.get(dq.size()-1));
+        dq.addFirst(arr2);
+        assertEquals("aa", dq.get(0));
+
     }
 
     // public static void main(String[] args) {

@@ -42,47 +42,54 @@ public class ArrayDeque<T> {
         int newSize = this.items.length * FACTOR;
         T[] newArray = (T[]) new Object[newSize];
         // System.arraycopy(this.items, 0, newArray, 0, this.size);
-        for (i=0; i < this.size ; i += 1;) {
-            newArray[i] = this.items.get(i);
+        for (int i = 0; i < this.size; i += 1) {
+            newArray[i] = this.get(i);
         }
         this.start = 0;
         this.stop = this.size - 1;
-        this.size = newSize;
         this.items = newArray;
     }
 
     public void addFirst(T item) {
-        T[] arr = (T[]) new Object[1];
-        arr[0] = item;
-        this.addFirst(arr);
+        if (this.size == this.items.length) {
+            this.reSize();
+        }
+        int index;
+        if (this.size == 0) {
+            index = 0;
+        } else {
+            index = convertIndex(this.start - 1);
+        }
+        this.items[index] = item;
+        this.start = index;
+        this.size += 1;
     }
 
     public void addFirst(T[] arr) {
-        if (this.size == this.items.length) {
-            this.reSize();
+        for (int i = arr.length - 1; i >= 0; i -= 1) {
+            this.addFirst(arr[i]);
         }
-        for (i = 0; i < arr.length; i += 1;) {
-            int trueIndex = getTrueIndex(self.start - arr.length + i);
-            this.items[trueIndex] = arr[i];
-        }
-        self.start -= arr.length;
     }
 
     public void addLast(T item) {
-        T[] arr = (T[]) new Object[1];
-        arr[0] = item;
-        this.addLast(arr);
-    }
-
-    public void addLast(T[] arr) {
         if (this.size == this.items.length) {
             this.reSize();
         }
-        for (i = 0; i < arr.length; i += 1;) {
-            int trueIndex = getTrueIndex(self.stop + i + 1);
-            this.items[trueIndex] = arr[i];
+        int index;
+        if (this.size == 0) {
+            index = 0;
+        } else {
+            index = convertIndex(this.stop + 1);
         }
-        self.stop += arr.length;
+        this.items[index] = item;
+        this.stop = index;
+        this.size += 1;
+    }
+
+    public void addLast(T[] arr) {
+        for (T element : arr) {
+            this.addLast(element);
+        }
     }
 
     public boolean isEmpty() {
@@ -95,19 +102,23 @@ public class ArrayDeque<T> {
 
     public String printDeque() {
         String out = "";
-        for (i = 0; i < this.size; i+= 1;) {
-            out += this.items.get(i).toString() + " ";
+        if (this.size == 0) {
+            System.out.println(out);
+            return out;
+        }
+        for (int i = 0; i < this.size; i+= 1) {
+            out += this.get(i).toString() + " ";
         }
         out = out.replaceAll("\\s+$", "");
         System.out.println(out);
-        return out
+        return out;
     }
 
     public T removeFirst() {
         if (this.size < 1) {
             return null;
         }
-        int trueIndex = getTrueIndex(this.start);
+        int trueIndex = convertIndex(this.start);
         T first = this.items[trueIndex];
         this.items[trueIndex] = null;
         this.size -= 1;
@@ -119,7 +130,7 @@ public class ArrayDeque<T> {
         if (this.size < 1) {
             return null;
         }
-        int trueIndex = getTrueIndex(this.stop);
+        int trueIndex = convertIndex(this.stop);
         T last = this.items[trueIndex];
         this.items[trueIndex] = null;
         this.size -= 1;
@@ -127,12 +138,20 @@ public class ArrayDeque<T> {
         return last;
     }
 
+    private int convertIndex(int index) {
+        int i = (index + this.items.length) % this.items.length;
+        return i;
+    }
+
     private int getTrueIndex(int index) {
-        int trueIndex = ( this.start + index ) % this.items.length;
+        int trueIndex = ( this.start + index + this.items.length ) % this.items.length;
         return trueIndex;
     }
 
     public T get(int index) {
+        if (index > this.size - 1) {
+            return null;
+        }
         int trueIndex = getTrueIndex(index);
         return this.items[trueIndex];
     }
