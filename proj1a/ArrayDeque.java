@@ -1,8 +1,12 @@
 public class ArrayDeque<T> {
 
     private int size;
-    private int front;
-    private int last;
+    // index of first element
+    // TODO change to index before first element
+    private int start;
+    // index of last element
+    // TODO change to index after last element
+    private int stop;
     private T[] items;
     private final int INI_SIZE = 8;
     private final double USE_RATIO = 0.25;
@@ -12,8 +16,8 @@ public class ArrayDeque<T> {
     public ArrayDeque() {
         this.size = 0;
         this.items = (T[]) new Object[INI_SIZE];
-        this.front = 0;
-        this.last = 0;
+        this.start = 0;
+        this.stop = 0;
     }
 
     // private ArrayDeque(T ele) {
@@ -55,8 +59,8 @@ public class ArrayDeque<T> {
         for (int i = 0; i < this.size; i += 1) {
             newArray[i] = this.get(i);
         }
-        this.front = -1;
-        this.last = this.size;
+        this.start = 0;
+        this.stop = this.size - 1;
         this.items = newArray;
     }
 
