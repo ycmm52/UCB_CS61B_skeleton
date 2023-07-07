@@ -109,27 +109,27 @@ public class LinkedListDequeTest {
     @Test
     public void testArrayDeque() {
         ArrayDeque<Integer> dq = new ArrayDeque();
-        // assertEquals(true, dq.isEmpty());
-        // dq.addFirst(0);
-        // assertEquals(0, (int) dq.removeFirst());
-        // dq.addFirst(2);
-        // assertEquals(2, (int) dq.removeLast());
-        // dq.addLast(2);
-        // assertEquals(2, (int) dq.removeFirst());
-        // dq.addLast(0);
-        // assertEquals(0, (int) dq.removeFirst());
-        // dq.addLast(0);
-        // dq.addLast(1);
-        // dq.addLast(2);
-        // dq.addLast(3);
-        // dq.addLast(4);
-        // dq.addLast(5);
-        // dq.addFirst(6);
-        // dq.isEmpty();
-        // dq.addLast(8);
-        // dq.addLast(9);
-        // dq.addLast(10);
-        // dq.removeFirst();
+        assertEquals(true, dq.isEmpty());
+        dq.addFirst(0);
+        assertEquals(0, (int) dq.removeFirst());
+        dq.addFirst(2);
+        assertEquals(2, (int) dq.removeLast());
+        dq.addLast(2);
+        assertEquals(2, (int) dq.removeFirst());
+        dq.addLast(0);
+        assertEquals(0, (int) dq.removeFirst());
+        dq.addLast(0);
+        dq.addLast(1);
+        dq.addLast(2);
+        dq.addLast(3);
+        dq.addLast(4);
+        dq.addLast(5);
+        dq.addFirst(6);
+        dq.isEmpty();
+        dq.addLast(8);
+        dq.addLast(9);
+        dq.addLast(10);
+        dq.removeFirst();
 
     }
 

@@ -2,8 +2,10 @@ public class ArrayDeque<T> {
 
     private int size;
     // index of first element
+    // TODO change to index before first element
     private int start;
     // index of last element
+    // TODO change to index after last element
     private int stop;
     private T[] items;
     private final int INI_SIZE = 8;
@@ -62,24 +64,22 @@ public class ArrayDeque<T> {
         this.items = newArray;
     }
 
-    private void addFirstOne(T item) {
-        this.items[this.start] = item;
-        this.size++;
-    }
-
     public void addFirst(T item) {
-        if (isEmpty()) {
-            addFirstOne(item);
-        } else {
-            if (this.size == this.items.length) {
-                this.reSize();
-            }
-            int index;
-            index = convertIndex(this.start - 1);
-            this.items[index] = item;
-            this.start = index;
-            this.size += 1;
+        if (this.size == this.items.length) {
+            this.reSize();
         }
+        int index;
+        if (isEmpty()) {
+            index = convertIndex(this.start);
+        } else {
+            index = convertIndex(this.start - 1);
+        }
+        this.items[index] = item;
+        if (!isEmpty()) {
+            index = convertIndex(index);
+            this.start = index;
+        }
+        this.size += 1;
     }
 
     // private void addFirst(T[] arr) {
@@ -89,18 +89,21 @@ public class ArrayDeque<T> {
     // }
 
     public void addLast(T item) {
-        if (isEmpty()) {
-            addFirstOne(item);
-        } else {
-            if (this.size == this.items.length) {
-                this.reSize();
-            }
-            int index;
-            index = convertIndex(this.stop + 1);
-            this.items[index] = item;
-            this.stop = index;
-            this.size += 1;
+        if (this.size == this.items.length) {
+            this.reSize();
         }
+        int index;
+        if (isEmpty()) {
+            index = this.stop;
+        } else {
+            index = convertIndex(this.stop + 1);
+        }
+        this.items[index] = item;
+        if (!isEmpty()) {
+            index = convertIndex(index);
+            this.stop = index;
+        }
+        this.size += 1;
     }
 
     // private void addLast(T[] arr) {
@@ -146,7 +149,7 @@ public class ArrayDeque<T> {
     }
 
     public T removeLast() {
-        if (isEmpty()) {
+        if (this.size < 1) {
             return null;
         }
         int trueIndex = convertIndex(this.stop);
